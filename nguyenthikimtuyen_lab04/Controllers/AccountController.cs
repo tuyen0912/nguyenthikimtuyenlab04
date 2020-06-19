@@ -15,7 +15,7 @@ namespace nguyenthikimtuyen_lab04.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
+        private ApplicationSignInManager _signInManagerdad;
         private ApplicationUserManager _userManager;
 
         public AccountController()
