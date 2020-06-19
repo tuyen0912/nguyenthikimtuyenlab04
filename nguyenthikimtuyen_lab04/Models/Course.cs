@@ -11,6 +11,8 @@ namespace nguyenthikimtuyen_lab04.Models
         public int Id { get; set; }
         public ApplicationUser Lecturer { get; set; }
         [Required]
+        public string LecturerId { get; set; }
+        [Required]
         [StringLength(225)]
         public string Place { get; set; }
         public DateTime DateTime { get; set; }
