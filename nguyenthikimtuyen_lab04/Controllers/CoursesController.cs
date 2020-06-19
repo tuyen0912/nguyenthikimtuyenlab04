@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using nguyenthikimtuyen_lab04.ViewModels;
+using System.Data.Entity;
 
 namespace nguyenthikimtuyen_lab04.Controllers
 {
@@ -51,6 +52,23 @@ namespace nguyenthikimtuyen_lab04.Controllers
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var courses = _dbContext.Attendances
+            .Where(a => a.AttendeeId == userId)
+            .Select(a => a.Course)
+            .Include(l => l.Lecturer)
+            .Include(l => l.Category)
+            .ToList();
+
+            var viewModel = new CourseViewModel
+            {
+                UpcommingCourse = courses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
         }
 
     }
