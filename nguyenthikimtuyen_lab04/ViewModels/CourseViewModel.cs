@@ -9,7 +9,8 @@ namespace nguyenthikimtuyen_lab04.ViewModels
 {
     public class CourseViewModel
     {
-       public IEnumerable<Course> UpcommingCourse { get; set; }
+        public int Id { get; set; }
+        public IEnumerable<Course> UpcommingCourse { get; set; }
         public bool ShowAction { get; set; }
         [Required]
         public string Place { get; set; }
@@ -22,6 +23,11 @@ namespace nguyenthikimtuyen_lab04.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public string Heading { get; set; }
+        public string Action
+        {
+            get { return (Id != 0) ? "Update" : "Create"; }
+        }
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
